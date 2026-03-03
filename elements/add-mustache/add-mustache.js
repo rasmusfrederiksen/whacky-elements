@@ -12,7 +12,10 @@ export class AddMustache extends HTMLElement {
     const root = this.attachShadow({ mode: 'open' });
     root.innerHTML = `
       <style>
-        :host { display: inline-block; }
+        :host {
+          display: inline-block;
+          --mustache-size: 6rem;
+        }
 
         /* just pass through whatever the user gives us */
         ::slotted(img) {
@@ -51,11 +54,11 @@ export class AddMustache extends HTMLElement {
         }
 
         .spacer {
-          width: var(--mustache-size, 8rem);
+          width: var(--mustache-size);
         }
 
         .mustache {
-          width: var(--mustache-size, 8rem);
+          width: var(--mustache-size);
         }
 
         /* mustache inside the canvas */
@@ -66,7 +69,7 @@ export class AddMustache extends HTMLElement {
         }
         freely-draggable img {
           display: block;
-          width: var(--mustache-size, 8rem);
+          width: var(--mustache-size);
           transform: rotate(var(--mustache-rotation, 0deg));
           pointer-events: none;
           user-select: none;
