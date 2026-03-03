@@ -1,4 +1,9 @@
 {
+  "author": {
+    "name": "Rasmus Frederiksen",
+    "email": "rasmus@vector.dk",
+    "url": "https://rasmusfrederiksen.dk"
+  },
   "name": "whacky-elements",
   "version": "1.0.0",
   "description": "Fun web components",
@@ -8,7 +13,7 @@
   "exports": {
     ".": "./index.js",
     "./freely-draggable": "./elements/freely-draggable/freely-draggable.js",
-    "./give-em-a-mustache": "./elements/give-em-a-mustache/give-em-a-mustache.js"
+    "./add-mustache": "./elements/add-mustache/add-mustache.js"
   },
   "files": [
     "index.js",
@@ -25,6 +30,6 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": ""
+    "url": "https://github.com/rasmusfrederiksen/whacky-elements"
   }
 }

@@ -1,7 +1,7 @@
 
 import '../freely-draggable/freely-draggable.js';
 
-export class GiveEmAMustache extends HTMLElement {
+export class AddMustache extends HTMLElement {
   constructor() {
     super();
 
@@ -51,6 +51,10 @@ export class GiveEmAMustache extends HTMLElement {
         }
 
         .spacer {
+          width: var(--mustache-size, 8rem);
+        }
+
+        .mustache {
           width: var(--mustache-size, 8rem);
         }
 
@@ -135,7 +139,9 @@ export class GiveEmAMustache extends HTMLElement {
         </div>
         <div class="toolbar">
           <freely-draggable>
-            <img class="mustache" />
+            <svg class="mustache" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 158.3">
+              <path d="M451.6,151c-37.7,12.2-82.5,8.1-119.4-5.4-32.7-12-54.8-32.4-77.1-58.9-29.9,39.2-72.2,65.3-121.5,70.4-38.4,4-85.2-2.4-113.6-30.7S-4.3,83.8,2.7,60.1C13.4,24.2,52.1,21.2,53,31.9s-11.1-.6-20.3,9.6-9.6,19.2-5.8,30c3.1,8.9,11.1,16.4,21.3,19.1s21.5,1.6,31.9-2.5c35.1-13.7,54-52.4,85.5-74.4S197.6-1.3,215.5.5c11.4,1.1,22,4.9,30.7,12.1l8.9,7.3c10.6-9.2,22.2-16.7,36.1-18.9,20.6-3.2,40.9,2.3,57.4,14.8,7.3,5.5,13.8,11.4,20,18.2l21.6,23.7c12,13.1,26.7,25.5,43.7,31.5,14.2,5,31.7,4.8,43.1-5.9s12.8-28.3,2.8-40.4c-8.2-10-18-7.1-20.6-9.1s-.6-1.6-.4-2.1c.9-2.3,3.2-3.8,5.7-4.3,12.2-2.4,24.4,1.6,33.2,10.5s10.6,14.7,12.6,24c4,18.7.6,38.6-9.7,54.8s-9.8,12.1-16,17c-9.9,8-21,13.5-33.1,17.4Z"/>
+            </svg>
           </freely-draggable>
           <div class="spacer"></div>
           <button class="btn-smaller" aria-label="Smaller" title="Smaller">&#8722;</button>
@@ -150,8 +156,8 @@ export class GiveEmAMustache extends HTMLElement {
     this._overlay   = root.querySelector('.overlay');
     this._closeBtn  = root.querySelector('.close-btn');
     this._fullImage = root.querySelector('.full-image');
-    this._mustacheImg = root.querySelector('.mustache');
     this._draggable = root.querySelector('freely-draggable');
+    this._mustacheSvg = root.querySelector('.mustache');
 
     this._btnRotL  = root.querySelector('.btn-rotate-left');
     this._btnRotR  = root.querySelector('.btn-rotate-right');
@@ -169,9 +175,6 @@ export class GiveEmAMustache extends HTMLElement {
   /* ---- lifecycle ---- */
 
   connectedCallback() {
-    // resolve mustache source – attribute or default
-    const mustacheSrc = this.getAttribute('mustache') || this._defaultMustacheSrc();
-    this._mustacheImg.src = mustacheSrc;
 
     this.addEventListener('dblclick', this._open);
     this._closeBtn.addEventListener('click', this._close);
@@ -189,18 +192,6 @@ export class GiveEmAMustache extends HTMLElement {
   disconnectedCallback() {
     this.removeEventListener('dblclick', this._open);
     document.removeEventListener('keydown', this._onKey);
-  }
-
-  /* ---- helpers ---- */
-
-  _defaultMustacheSrc() {
-    // resolve relative to this script's location
-    try {
-      const scriptUrl = new URL('mustache.svg', import.meta.url);
-      return scriptUrl.href;
-    } catch {
-      return 'mustache.svg';
-    }
   }
 
   /* ---- overlay open / close ---- */
@@ -245,9 +236,8 @@ export class GiveEmAMustache extends HTMLElement {
   /* ---- mustache transforms ---- */
 
   _applyMustache() {
-    this._mustacheImg.style.transform =
+    this._mustacheSvg.style.transform =
       `scale(${this._scale}) rotate(${this._rotation}deg)`;
-    // this._mustacheImg.style.width = `${this._scale * 8}rem`;
   }
 
   _rotate(deg) {
@@ -262,6 +252,6 @@ export class GiveEmAMustache extends HTMLElement {
 
 }
 
-customElements.define('give-em-a-mustache', GiveEmAMustache);
+customElements.define('add-mustache', AddMustache);
 
-export default GiveEmAMustache;
+export default AddMustache;
