@@ -5,7 +5,7 @@
     "url": "https://rasmusfrederiksen.dk"
   },
   "name": "whacky-elements",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Fun web components",
   "type": "module",
   "main": "index.js",
